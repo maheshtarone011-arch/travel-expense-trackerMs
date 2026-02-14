@@ -1,0 +1,38 @@
+{
+    "name": "Travel Expense Tracker",
+    "short_name": "Travel Tracker",
+    "description": "Track your travel expenses efficiently. Manage tours, log expenses by category, and keep your budget on track.",
+    "start_url": "./",
+    "scope": "./",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#4338ca",
+    "theme_color": "#4338ca",
+    "categories": [
+        "finance",
+        "travel"
+    ],
+    "lang": "en",
+    "icons": [
+        {
+            "src": "./icons/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "./icons/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "./icons/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ],
+    "screenshots": [],
+    "prefer_related_applications": false
+}
