@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="apple-touch-icon" href="./icons/icon-192x192.png" />
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <!-- FORCE LIGHT MODE -->
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">
+  <meta name="theme-color" content="#4338ca">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <title>Travel Expense Tracker</title>
+  <meta name="description"
+    content="Track your travel expenses efficiently. Manage tours, log expenses by category, and keep your budget on track.">
+  <script type="module" crossorigin src="./assets/index-7VqZLfa0.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Dun_2tKz.css">
+</head>
+
+<body class="bg-gray-50 text-gray-800 antialiased">
+  <div id="root"></div>
+  <script>
+    // Register Service Worker for PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then((reg) => console.log('SW registered:', reg.scope))
+          .catch((err) => console.log('SW registration failed:', err));
+      });
+    }
+  </script>
+</body>
+
+</html>
