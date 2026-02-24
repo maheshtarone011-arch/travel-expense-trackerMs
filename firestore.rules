@@ -1,0 +1,11 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /tours/{tourId} {
+      // Allow users to read/update/delete only their own tours
+      allow read, update, delete: if request.auth != null && resource.data.userId == request.auth.uid;
+      // Allow authenticated users to create tours with their own userId
+      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+    }
+  }
+}

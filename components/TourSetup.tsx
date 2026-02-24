@@ -21,12 +21,12 @@ const TourSetup: React.FC<TourSetupProps> = ({ onStartTour }) => {
       return;
     }
     if (new Date(startDate) > new Date(endDate)) {
-        setError('Start date cannot be after end date.');
-        return;
+      setError('Start date cannot be after end date.');
+      return;
     }
     if (parseFloat(advance) < 0) {
-        setError('Advance amount cannot be negative.');
-        return;
+      setError('Advance amount cannot be negative.');
+      return;
     }
     setError('');
     onStartTour({
@@ -40,83 +40,83 @@ const TourSetup: React.FC<TourSetupProps> = ({ onStartTour }) => {
   return (
     <div className="bg-white rounded-2xl shadow-xl border border-indigo-50 max-w-2xl mx-auto overflow-hidden animate-fade-in-up">
       <div className="bg-indigo-700 p-6 text-center">
-        <h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-wide">Plan New Trip</h2>
+        <h2 className="text-xl md:text-2xl font-bold text-white tracking-wide">Plan New Trip</h2>
         <p className="text-indigo-200 text-sm mt-1">Enter details to start tracking expenses</p>
       </div>
-      
+
       <form onSubmit={handleSubmit} className="p-8 space-y-6">
         {/* Tour Name */}
         <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">Tour / Trip Name</label>
-            <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <NotebookText className="h-5 w-5 text-indigo-500" />
-                </div>
-                <input
-                    type="text"
-                    placeholder="e.g., Goa Vacation, Client Visit Mumbai"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all font-medium text-gray-800"
-                />
+          <label className="block text-sm font-semibold text-gray-700 mb-1.5">Tour / Trip Name</label>
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <NotebookText className="h-5 w-5 text-indigo-500" />
             </div>
+            <input
+              type="text"
+              placeholder="e.g., Goa Vacation, Client Visit Mumbai"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full pl-10 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all font-medium text-gray-800"
+            />
+          </div>
         </div>
 
         {/* Dates */}
         <div className="grid md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">Start Date</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-1.5">Start Date</label>
             <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Calendar className="h-5 w-5 text-indigo-500" />
-                </div>
-                <input
-                    type="date"
-                    value={startDate}
-                    onChange={(e) => setStartDate(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all font-medium text-gray-800"
-                />
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Calendar className="h-5 w-5 text-indigo-500" />
+              </div>
+              <input
+                type="date"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+                className="w-full pl-10 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all font-medium text-gray-800"
+              />
             </div>
           </div>
           <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">End Date</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-1.5">End Date</label>
             <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Calendar className="h-5 w-5 text-indigo-500" />
-                </div>
-                <input
-                    type="date"
-                    value={endDate}
-                    min={startDate}
-                    onChange={(e) => setEndDate(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all font-medium text-gray-800"
-                />
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Calendar className="h-5 w-5 text-indigo-500" />
+              </div>
+              <input
+                type="date"
+                value={endDate}
+                min={startDate}
+                onChange={(e) => setEndDate(e.target.value)}
+                className="w-full pl-10 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all font-medium text-gray-800"
+              />
             </div>
           </div>
         </div>
 
         {/* Advance Amount */}
         <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">Company Advance / Budget</label>
-            <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <IndianRupee className="h-5 w-5 text-green-600" />
-                </div>
-                <input
-                    type="number"
-                    placeholder="0"
-                    value={advance}
-                    onChange={(e) => setAdvance(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all font-bold text-lg text-gray-900"
-                />
+          <label className="block text-sm font-semibold text-gray-700 mb-1.5">Company Advance / Budget</label>
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <IndianRupee className="h-5 w-5 text-green-600" />
             </div>
+            <input
+              type="number"
+              placeholder="0"
+              value={advance}
+              onChange={(e) => setAdvance(e.target.value)}
+              className="w-full pl-10 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all font-bold text-lg text-gray-900"
+            />
+          </div>
         </div>
 
         {error && (
-            <div className="bg-red-50 text-red-600 px-4 py-3 rounded-lg text-sm font-medium border border-red-100 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-red-600 rounded-full"></span>
-                {error}
-            </div>
+          <div className="bg-red-50 text-red-600 px-4 py-3 rounded-lg text-sm font-medium border border-red-100 flex items-center gap-2">
+            <span className="w-1.5 h-1.5 bg-red-600 rounded-full"></span>
+            {error}
+          </div>
         )}
 
         <button
