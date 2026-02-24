@@ -2,7 +2,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore, collection, getDocs, query, limit } from "firebase/firestore";
+import { getFirestore, collection, getDocs, query, limit, where } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -22,16 +22,21 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 // Diagnostic: Test Firestore connectivity and rules
-export const testFirestoreConnection = async (): Promise<{ ok: boolean; error?: string; code?: string }> => {
+export const testFirestoreConnection = async (uid?: string): Promise<{ ok: boolean; error?: string; code?: string }> => {
   try {
-    const testQuery = query(collection(db, 'tours'), limit(1));
+    const toursCollection = collection(db, 'tours');
+    // If we have a uid, use it to filter the test query so it satisfies security rules
+    const testQuery = uid
+      ? query(toursCollection, where('userId', '==', uid), limit(1))
+      : query(toursCollection, limit(1));
+
     await getDocs(testQuery);
     return { ok: true };
   } catch (error: any) {
     const code = error?.code || 'unknown';
     let message = 'Firebase connection failed.';
     if (code === 'permission-denied') {
-      message = 'Firestore permission denied — Security rules may have expired. Please update Firestore rules in Firebase Console.';
+      message = 'Firestore permission denied — Security rules may have expired or query is not filtered. Please update Firestore rules in Firebase Console.';
     } else if (code === 'unavailable') {
       message = 'Firebase is unreachable — Please check your internet connection.';
     } else if (code === 'not-found') {

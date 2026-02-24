@@ -26,8 +26,8 @@ const App: React.FC = () => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
-        // Test Firebase connection first
-        const connectionTest = await testFirestoreConnection();
+        // Test Firebase connection first with the current user's UID
+        const connectionTest = await testFirestoreConnection(currentUser.uid);
         if (!connectionTest.ok) {
           setFirebaseError(connectionTest.error || 'Firebase connection failed');
         } else {
@@ -290,7 +290,7 @@ const App: React.FC = () => {
                 onClick={async () => {
                   setFirebaseError('');
                   if (user) {
-                    const result = await testFirestoreConnection();
+                    const result = await testFirestoreConnection(user.uid);
                     if (result.ok) {
                       await fetchTours(user.uid);
                     } else {
